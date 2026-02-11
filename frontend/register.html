@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | TezPrint</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styletemplate.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark"
+       style="background: var(--glass); backdrop-filter: blur(10px); border-bottom:1px solid var(--border);">
+    <a class="navbar-brand d-flex align-items-center" href="Main page.html">
+      <img src="/pictures/logo.png" style="height:40px;margin-right:10px">
+      TezPrint
+    </a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="order.html">Order</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle-btn">Change Mode</button>
+      </div>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="header-bar">REGISTER</div>
+
+  <main class="main">
+    <form class="auth-box" onsubmit="register(); return false;">
+      <input id="email" type="email" class="form-control mb-3" placeholder="Email" required>
+      <input id="password" type="password" class="form-control mb-3" placeholder="Password" required>
+
+      <button class="btn btn-info btn-block">Create account</button>
+
+      <div class="auth-hint">
+        <span>Already have account?</span>
+        <a href="login.html">Sign in</a>
+      </div>
+
+      <p id="msg"></p>
+    </form>
+  </main>
+
+  <div class="footer-bar">+7 778 087 82 51 | TezPrint</div>
+</div>
+
+<script src="register.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

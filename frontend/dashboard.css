@@ -1,0 +1,99 @@
+.order-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.theme-toggle-btn {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #001018;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.theme-toggle-btn {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #001018;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.light-mode .theme-toggle-btn {
+  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+  color: white;
+  box-shadow: 0 2px 8px rgba(14,165,233,0.4);
+}
+
+.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .navbar-brand span {
+  color: #0f172a !important; 
+}
+
+.light-mode .nav-link {
+  color: #0f172a !important; 
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(14, 165, 233, 0.05);
+  transition: all 0.25s ease;
+}
+
+.light-mode .nav-link:hover {
+  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+  color: #fff !important;
+  border-color: transparent;
+  text-shadow: 0 0 6px rgba(14, 165, 233, 0.5);
+}
+
+.light-mode .theme-toggle-btn {
+  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+  color: white;
+  box-shadow: 0 3px 8px rgba(14, 165, 233, 0.3);
+}
+
+.light-mode .theme-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(14, 165, 233, 0.45);
+}
+.light-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(15,23,42,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.light-mode .navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.light-mode .site-footer {
+  background: rgba(255,255,255,0.9);
+  color: #0f172a;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.light-mode .footer-links a {
+  color: #0ea5e9;
+}
