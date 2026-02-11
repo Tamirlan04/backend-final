@@ -1,189 +1,202 @@
-# assignment3-backend — TezPrint Orders (Frontend + Express + MongoDB)
+# Print Service Web Application
 
-This project is a simple full-stack app for TezPrint order management.
-It contains a static frontend (HTML/CSS/JS) and a backend API (Node.js + Express) connected to MongoDB (Mongoose).
+Final Project – Full Stack Web Application
 
-Orders are created from the website order form and stored in MongoDB.
+## Project Description
 
----
+This project is a full-stack web application for managing printing orders (T-shirt print, booklet, etc.).
+Users can register, log in, and submit printing orders.
+Administrators can view all orders and update their status.
 
-## Project Structure
+The system includes:
 
-assignment-8-main/
-backend/
-src/
-config/
-db.js
-controllers/
-orders.controller.js
-middlewares/
-errorHandler.js
-notFound.js
-models/
-Order.js
-routes/
-orders.routes.js
-app.js
-server.js
-.env (create manually)
-package.json
-package-lock.json
-frontend/
-order.html
-script5.js
-style5.css
-theme.js
-...other pages
-pictures/
-...images
-
-
----
-
-## Features
-
-### Frontend
-- Order form page (`frontend/order.html`)
-- Sends order data to the backend using `fetch()`:
-  - full name, phone, order type, deadline
-  - design file name is saved as text (`designFileName`)
-- Shows success / error message after submit
-- Dark/Light theme toggle
-
-### Backend (Express + MongoDB)
-- REST API endpoints for orders:
-  - `POST /api/orders` — create order
-  - `GET /api/orders` — get all orders
-  - `GET /api/orders/:id` — get order by id
-  - `PUT /api/orders/:id` — update order by id
-  - `DELETE /api/orders/:id` — delete order by id
-- Validation:
-  - required fields: `name`, `phone`, `type`, `deadline`
-  - returns `400` for missing fields
-  - returns `404` if order not found
-- Mongoose schema with timestamps:
-  - `createdAt`, `updatedAt`
-- Health check:
-  - `GET /health` → `{ "ok": true }`
+* User authentication with JWT
+* Order creation system
+* Role-based access control (User / Admin)
+* Protected API routes
+* MongoDB database integration
 
 ---
 
 ## Tech Stack
 
-- Frontend: HTML, CSS, JavaScript, jQuery, Bootstrap
-- Backend: Node.js, Express
-- Database: MongoDB, Mongoose
-- Env vars: dotenv
+Backend:
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* CORS
+
+Frontend:
+
+* HTML
+* CSS
+* JavaScript (Fetch API)
+* jQuery
 
 ---
 
-## Requirements (Install)
+## Features
 
-1) Node.js (LTS recommended)
-- Check:
-  ```bash
-  node -v
-  npm -v
-MongoDB
+### Authentication
 
-Option A: Local MongoDB installed and running
+* User registration
+* User login
+* JWT token generation
+* Protected routes using middleware
+* Token-based authorization
 
-Option B: MongoDB Atlas (cloud)
+### Orders (User)
 
-(Recommended) VS Code Live Server
+* Create new order
+* View personal orders
+* Protected order submission
 
-To open frontend pages via http://localhost:5500/... instead of file:///
+### Orders (Admin)
 
-Setup & Run
-1) Backend
+* View all orders
+* Update order status
+* Role-based access control
 
-Open terminal in project root and go to backend:
+---
+
+## Project Structure
+
+```
+backend/
+ ├── models/
+ │    └── Order.js
+ │    └── User.js
+ ├── routes/
+ │    └── auth.routes.js
+ │    └── orders.routes.js
+ ├── middlewares/
+ │    └── auth.js
+ │    └── adminMiddleware.js
+ │    └── errorHandler.js
+ │    └── notFound.js
+ ├── app.js
+ ├── server.js
+```
+
+---
+
+## Installation & Run
+
+### 1. Clone the repository
+
+```
+git clone <your-repo-link>
 cd backend
-Install dependencies:
+```
+
+### 2. Install dependencies
+
+```
 npm install
-Create .env inside backend/:
+```
+
+### 3. Create .env file
+
+```
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/tezprint
-Run backend:
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+### 4. Run server
+
+```
 npm run dev
-Test in browser/Postman:
+```
 
-GET http://localhost:5000/health
-2) Frontend
+or
 
-Recommended:
+```
+node server.js
+```
 
-Open frontend/order.html using VS Code Live Server
+Server runs on:
 
-Backend API URL used in frontend:
+```
+http://localhost:5000
+```
 
-http://localhost:5000/api/orders
-API Endpoints
+---
 
-Base URL: http://localhost:5000
+## API Endpoints
 
-GET /health
+### Auth
+
+POST /api/auth/register
+POST /api/auth/login
+
+---
+
+### Orders
 
 POST /api/orders
+GET /api/orders/my
+GET /api/orders (Admin only)
+PATCH /api/orders/:id/status (Admin only)
 
-GET /api/orders
+---
 
-GET /api/orders/:id
+## Security
 
-PUT /api/orders/:id
+* JWT authentication
+* Protected routes with middleware
+* Role-based access (user / admin)
+* Server-side validation
+* Error handling middleware
 
-DELETE /api/orders/:id
-Postman Examples
-Create Order
+---
 
-POST http://localhost:5000/api/orders
+## Database Models
 
-Body → raw → JSON:
+### User
 
-{
-  "name": "Test User",
-  "phone": "+7 777 000 00 00",
-  "type": "Business Card",
-  "deadline": "2026-02-01",
-  "designFileName": "logo.pdf"
-}
+* email
+* password (hashed)
+* role
 
-Get All Orders
+### Order
 
-GET http://localhost:5000/api/orders
+* userId (reference to User)
+* name
+* phone
+* printType
+* deadline
+* quantity
+* status
+* timestamps
 
-Update Order
+---
 
-PUT http://localhost:5000/api/orders/<id>
+## Error Handling
 
-Body → raw → JSON:
+The project includes:
 
-{
-  "name": "Updated Name",
-  "phone": "+7 777 111 11 11",
-  "type": "Booklet",
-  "deadline": "2026-03-10",
-  "designFileName": "new.pdf"
-}
+* Custom error handler middleware
+* 404 route handler
+* Try/catch blocks in controllers
 
-Delete Order
+---
 
-DELETE http://localhost:5000/api/orders/<id>
+## Future Improvements
 
-Notes
+* File upload support with Multer
+* Payment integration
+* Order tracking system
+* Email notifications
+* Admin dashboard UI
+* Validation with Joi
 
-The file upload field in the form is used only to capture the file name.
-The project does not upload/store the file itself, only designFileName is saved in MongoDB.
+---
 
-What NOT to commit
-
-Do not push node_modules/ and .env.
-
-Recommended .gitignore:
-
-node_modules/
-backend/node_modules/
-backend/.env
-.env
-*.log
-.DS_Store
+## Author
+Tamirlan Kyzylov - SE-2433
+Final Exam Project
+Back End Web Development
